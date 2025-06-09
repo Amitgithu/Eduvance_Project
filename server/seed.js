@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const Course = require('./controllers/Course')
+const dotenv = require('dotenv')
 
+dotenv.config();
 
 // Example data for two courses
 const courseData = [
@@ -82,7 +84,7 @@ async function seed() {
   console.log('Db Inserted..');
 }
 
-mongoose.connect('mongodb://127.0.0.1:27017/E-Learning-Hub',)
+mongoose.connect(process.env.MONGODB_URI,)
   .then(async () => {
     console.log('Data seeding..');
     await Course.deleteMany({})

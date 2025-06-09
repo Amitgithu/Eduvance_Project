@@ -17,7 +17,7 @@ const courseRoutes = require('./routes/courseRoutes');
 const lectureRoutes = require('./routes/lectureRoutes');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use("/files", express.static("files"));
 app.use(cors());
@@ -30,7 +30,7 @@ dotenv.config();
 
 console.log("📦 Mongo URI:", process.env.MONGODB_URI); // Debug log
 
-mongoose.connect(process.env.MongoDB_URI)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => {
