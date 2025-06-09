@@ -16,10 +16,10 @@ function Feedback() {
   // Fetching course and feedback data
   async function fetchData() {
     try {
-      const courseResponse = await axios.get(`http://localhost:5000/single-course/${courseId}`);
+      const courseResponse = await axios.get(`https://eduvance-backend.onrender.com/single-course/${courseId}`);
       setCourse(courseResponse.data);
 
-      const feedbackResponse = await axios.get(`http://localhost:5000/courses/${courseId}/feedback`);
+      const feedbackResponse = await axios.get(`https://eduvance-backend.onrender.com/courses/${courseId}/feedback`);
       const sortedFeedbacks = feedbackResponse.data.feedbacks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setUserFeedbacks(sortedFeedbacks);
       setLoading(false);
@@ -43,7 +43,7 @@ function Feedback() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`http://localhost:5000/my-courses/${courseId}/feedback`, { rating, feedback }, {
+      await axios.post(`https://eduvance-backend.onrender.com/my-courses/${courseId}/feedback`, { rating, feedback }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       toast.success('Feedback submitted successfully!', { toastId: 'feedbackSuccess' });

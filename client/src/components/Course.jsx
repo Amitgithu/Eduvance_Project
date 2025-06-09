@@ -11,7 +11,7 @@ function AllCourses() {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const response = await axios.get('http://localhost:5000/courses');
+        const response = await axios.get('https://eduvance-backend.onrender.com/courses');
         setCourses(response.data);
       }  catch (error) {
         if (error.response) {
@@ -30,7 +30,7 @@ function AllCourses() {
     if (token) {
       async function fetchEnrolledCourses() {
         try {
-          const response = await axios.get('http://localhost:5000/my-courses', {
+          const response = await axios.get('https://eduvance-backend.onrender.com/my-courses', {
             headers: { Authorization: `Bearer ${token}` },
           });
           setEnrolledCourses(response.data.map((course) => course._id));
@@ -68,7 +68,7 @@ function AllCourses() {
   const handleZeroPrice = async (courseId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`http://localhost:5000/razorpay/payment`, { courseId }, {
+      const response = await axios.post(`https://eduvance-backend.onrender.com/razorpay/payment`, { courseId }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 200) {
@@ -91,7 +91,7 @@ function AllCourses() {
   const handleEnrollCourse = async (courseId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`http://localhost:5000/razorpay/payment`, { courseId }, {
+      const response = await axios.post(`https://eduvance-backend.onrender.com/razorpay/payment`, { courseId }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -109,7 +109,7 @@ function AllCourses() {
           try {
             const paymentId = response.razorpay_payment_id;
             await axios.post(
-              `http://localhost:5000/razorpay/payment/success`,
+              `https://eduvance-backend.onrender.com/razorpay/payment/success`,
               { courseId, order_id, paymentId },
               {
                 headers: {
@@ -168,7 +168,7 @@ function AllCourses() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/search?q=${query}`);
+                const response = await axios.get(`https://eduvance-backend.onrender.com/search?q=${query}`);
                 setSearchResult(response.data);
             } catch (error) {
                 console.error('Error searching:', error);

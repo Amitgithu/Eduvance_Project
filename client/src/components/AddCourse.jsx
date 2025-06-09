@@ -16,7 +16,7 @@ function AddCourse() {
       if (token) {
         try {
           const decodedToken = jwtDecode(token);
-          const response = await axios.get(`http://localhost:5000/user/${decodedToken.userId}`, {
+          const response = await axios.get(`https://eduvance-backend.onrender.com/user/${decodedToken.userId}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -57,7 +57,7 @@ function AddCourse() {
 
     try {
       const result = await axios.post(
-        "http://localhost:5000/upload-files",
+        "https://eduvance-backend.onrender.com/upload-files",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -101,7 +101,7 @@ function AddCourse() {
     for (const lectureData of courseData.lectures) {
       // console.log(courseData.lectures)
       try {
-        const response = await axios.post('http://localhost:5000/add-lecture', lectureData, {
+        const response = await axios.post('https://eduvance-backend.onrender.com/add-lecture', lectureData, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -128,7 +128,7 @@ function AddCourse() {
       lectureIds: lectureIds
     };
 
-      await axios.post('http://localhost:5000/add-course', courseDataWithLectureIds, {
+      await axios.post('https://eduvance-backend.onrender.com/add-course', courseDataWithLectureIds, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

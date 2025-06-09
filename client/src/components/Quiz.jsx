@@ -19,7 +19,7 @@ const Quiz = () => {
         const data = {
             "prompt": `Provide 10 different ${courseName} Quiz Questions and Answer in this provided format: const dummyQuizzes = [ { "questions": [ { "question": "What is the result of 3 + 2?", "options": ["5", "6", "7", "8"], "correctAnswer": 0, "timeLimit": 30 } ] } ];`
         }
-        const response = await axios.post(`http://localhost:5000/generateQuiz`, data);
+        const response = await axios.post(`https://eduvance-backend.onrender.com/generateQuiz`, data);
          // Parse the response to extract quiz questions
          const rawText = response.data.candidates[0].content.parts[0].text;
         //  console.log("Raw Text : ", rawText);

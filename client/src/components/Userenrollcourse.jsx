@@ -9,7 +9,7 @@ const UserEnrollCourse = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/courses/enrollments', {
+        const response = await axios.get('https://eduvance-backend.onrender.com/courses/enrollments', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`, 
           },
